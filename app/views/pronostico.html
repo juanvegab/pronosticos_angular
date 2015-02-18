@@ -1,0 +1,22 @@
+<input type="text" ng-model="zipcode">
+<a class="btn btn-success" ng-click="getPronostico(zipcode)">Request Zipcode</a>
+
+<div class="jumbotron">
+	<h2 class="text-left">{{result.city.name}}<span class="text-muted"> {{result.city.country}}</span></h2>
+	<img class="map-image" src="https://maps.googleapis.com/maps/api/staticmap?center={{result.city.coord.lat}},{{result.city.coord.lon}}&zoom=13&size=580x200" alt="">
+	<ul class="days-list list-unstyled">
+		<li class="panel panel-default" ng-repeat="day in result.list">
+			<div class="panel-body text-left">
+				<h3 class="col-sm-12">{{day.dt_txt | date:"EEEE d 'de' MMMM 'del' yyyy"}}</h3>
+				<p class="col-sm-6 pull-left">Pronóstico: {{day.weather[0].main}}<span><img class="weather-icon" src="http://openweathermap.org/img/w/{{day.weather[0].icon}}.png" alt=""></span></p>
+				<p class="col-sm-6 pull-right">Dirección: {{day.wind.deg}}</p>
+				<p class="col-sm-6 pull-left">Temp. Min: {{day.main.temp_min}}</p>
+				<p class="col-sm-6 pull-right">Temp. Max: {{day.main.temp_max}}</p>
+				<p class="col-sm-6 pull-left">Presión: {{day.main.pressure}}</p>
+				<p class="col-sm-6 pull-right">Humedad: {{day.main.humidity}}</p>
+				<p class="col-sm-6 pull-left">Velocidad: {{day.wind.speed}}</p>
+				<p class="col-sm-6 pull-right">Detalle: {{day.weather[0].description}}</p>
+			</div>
+		</li>
+	</ul>
+</div>
